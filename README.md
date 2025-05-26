@@ -21,16 +21,18 @@ A secure online art auction platform built as my BCA Final Year Mini Project usi
 
 ---
 
-## 📸 Screenshots
+##  Screenshots
  
-### 🔐 Login / Sign Up
-![Login Page](https://github.com/niranjanabaalu/art-vault-auctions/blob/main/buy_page.JPG?raw=true)
+###  Login / Sign Up
+![Login Page](https://github.com/niranjanabaalu/art-vault-auctions/blob/main/login_page.JPG?raw=true)
+![Signup Page](https://github.com/niranjanabaalu/art-vault-auctions/blob/main/signup_Screenshot.JPG?raw=true)
 
-### 🖌️ Upload Painting
-![Upload Painting](https://via.placeholder.com/600x300?text=Upload+Painting+Page)
+###  Live Auctions / Upcoming Auctions
+![Live Auction Page](https://github.com/niranjanabaalu/art-vault-auctions/blob/main/live_auction_page.JPG?raw=true)
+![Upcoming Auction Page](https://github.com/niranjanabaalu/art-vault-auctions/blob/main/upcoming_auctions_page.JPG?raw=true)
 
-### ⏳ Live Auction with Timer
-![Live Auction](https://via.placeholder.com/600x300?text=Live+Auction+Page)
+###  User Profile Page
+![User Profile Page](https://github.com/niranjanabaalu/art-vault-auctions/blob/main/user_profile_page.JPG?raw=true)
 
 ---
 
