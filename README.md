@@ -22,9 +22,9 @@ A secure online art auction platform built as my BCA Final Year Mini Project usi
 ---
 
 ## 📸 Screenshots
-
+ 
 ### 🔐 Login / Sign Up
-![Login Page](https://via.placeholder.com/600x300?text=Login+Page)
+![Login Page](https://github.com/niranjanabaalu/art-vault-auctions/blob/main/buy_page.JPG?raw=true)
 
 ### 🖌️ Upload Painting
 ![Upload Painting](https://via.placeholder.com/600x300?text=Upload+Painting+Page)
