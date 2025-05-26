@@ -2,7 +2,7 @@
 #  Art Vault Auctions
 A secure online art auction platform built as my BCA Final Year Mini Project using Django.
 
-![Project Banner](https://via.placeholder.com/1000x300?text=Art+Vault+Auctions+%7C+Django+Based+Auction+Platform)
+![Project Banner](https://github.com/niranjanabaalu/art-vault-auctions/raw/refs/heads/main/art_vault_auctions.webp)
 
 ---
 
@@ -64,11 +64,16 @@ This project was developed as part of my **final year BCA mini project** to demo
 
 ---
 
-## 🚀 Future Enhancements
+##  Future Enhancements
 
-- Payment integration for direct purchases
-- Admin dashboard for better control
-- Image compression & media management
+-Real Payment Integration
+Implement secure, real-time payment processing using gateways like Razorpay or Stripe.
+
+-Advanced Review and Comment System
+Add support for user reviews, threaded comments, and moderation features.
+
+-AI-Based Painting Recommendations
+Introduce personalized artwork suggestions using machine learning based on user activity and preferences.
 
 ---
 
