@@ -38,11 +38,11 @@ A secure online art auction platform built as my BCA Final Year Mini Project usi
 ![User Profile Page](https://github.com/niranjanabaalu/art-vault-auctions/blob/main/user_profile_page.JPG?raw=true)
 
 ###  Upload Painting Page
-![Home Page](https://github.com/niranjanabaalu/art-vault-auctions/blob/main/uplo.JPG?raw=true)
+![Upload painting Page](https://github.com/niranjanabaalu/art-vault-auctions/blob/main/upload_painting%20with%20information.JPG?raw=true)
 
 ###  Followers / Following Page
-![Home Page](https://github.com/niranjanabaalu/art-vault-auctions/blob/main/follower_page.JPG?raw=true)
-![Home Page](https://github.com/niranjanabaalu/art-vault-auctions/blob/main/following_page.JPG?raw=true)
+![Follower Page](https://github.com/niranjanabaalu/art-vault-auctions/blob/main/follower_page.JPG?raw=true)
+![Following Page](https://github.com/niranjanabaalu/art-vault-auctions/blob/main/following_page.JPG?raw=true)
 
 ---
 
