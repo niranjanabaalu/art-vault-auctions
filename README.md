@@ -81,7 +81,7 @@ Introduce personalized artwork suggestions using machine learning based on user 
 
 **Niranjana B**  
 📧 niranjanab005@gmail.com  
-🔗 [LinkedIn](https://linkedin.com/in/niranjana-balasubramanian-1ab0a4251) | [GitHub](https://github.com/N4si)
+🔗 [LinkedIn](https://linkedin.com/in/niranjana-balasubramanian-1ab0a4251) | [GitHub](https://github.com/niranjanabaalu)
 
 ---
 
