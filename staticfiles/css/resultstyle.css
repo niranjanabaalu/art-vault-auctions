@@ -1,0 +1,146 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F5F7F8; /* Soft Cool White */
+    text-align: center;
+}
+
+/* Header */
+header {
+    background-color: #7A909A; /* Muted Cool Blue */
+    color: white;
+    padding: 20px;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Main Content */
+main {
+    padding: 40px 10px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Sections */
+section {
+    margin-bottom: 50px;
+}
+
+h2 {
+    font-size: 28px;
+    color: #37474F; /* Deep Blue-Gray */
+    margin-bottom: 20px;
+}
+
+/* Gallery - Pinterest Style */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+/* Art Item - Pinterest Card */
+.art-item {
+    background: #E3E7EB; /* Light Misty Gray */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+}
+
+.art-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Art Images */
+.art-item img {
+    width: 100%;
+    height: auto;
+    max-height: 280px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Titles & Text */
+h3 {
+    font-size: 22px;
+    color: #37474F;
+    margin-top: 10px;
+}
+
+p {
+    font-size: 18px;
+    color: #37474F;
+    margin: 5px 0;
+}
+
+/* Buttons - Instagram Style */
+.btn {
+    display: inline-block;
+    padding: 10px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    margin-top: 15px;
+}
+
+.primary-btn {
+    background-color: #A7C7E7; /* Soft Sky Blue */
+    color: white;
+    border: none;
+}
+
+.primary-btn:hover {
+    background-color: #6D8EA0; /* Muted Slate Blue */
+}
+
+.accent-btn {
+    background-color: #E9AFA3; /* Soft Warm Coral */
+    color: white;
+    border: none;
+}
+
+.accent-btn:hover {
+    background-color: #D48E7C;
+}
+
+/* Footer */
+footer {
+    background-color: #6D8EA0; /* Muted Slate Blue */
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+}

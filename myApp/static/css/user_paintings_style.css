@@ -1,0 +1,151 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F5F7F8;
+    color: #37474F;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+h1 {
+    color: #37474F;
+}
+
+/* Profile Section */
+.profile-container {
+    background-color: #7A909A;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #A7C7E7;
+}
+
+.follow-info {
+    margin-top: 10px;
+}
+
+.follow-link {
+    text-decoration: none;
+    color: #E3E7EB;
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+/* Follow Button */
+.follow-btn {
+    background-color: #A7C7E7;
+    color: #37474F;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.follow-btn:hover {
+    background-color: #6D8EA0;
+    color: #F5F7F8;
+}
+
+/* Paintings List */
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+li {
+    background-color: #E3E7EB;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+li:hover {
+    transform: translateY(-5px);
+}
+
+img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.sold {
+    color: #E9AFA3;
+    font-weight: bold;
+}
+
+.available {
+    color: #6D8EA0;
+    font-weight: bold;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #E3E7EB;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 80%;
+    text-align: center;
+}
+
+.modal img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.esc-text {
+    font-size: 12px;
+    color: #37474F;
+}
+
+/* Back to Search Button */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #6D8EA0;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+a:hover {
+    background-color: #37474F;
+}

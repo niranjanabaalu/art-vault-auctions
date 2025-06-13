@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'css/registerstyle.css' %}?v=1">
+</head>
+<body style="background-image: url('{% static 'images/If Van Gogh had painted the New York skyline….jfif' %}'); background-size: cover; background-position: center; background-attachment: fixed;">
+
+    <div class="container">
+        <!-- Left Panel -->
+        <div class="left-panel">
+            <h1>Welcome</h1>
+            <p>Every great bid begins with a bold first step. Sign up and make your move!</p>
+        </div>
+        <!-- Right Panel -->
+        <div class="right-panel">
+            <h2>Sign Up</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

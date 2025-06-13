@@ -1,0 +1,118 @@
+/* paymentstyles.css */
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F5F7F8; /* Soft Cool White */
+    color: #37474F; /* Deep Blue-Gray */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.success-container {
+    background: #E3E7EB; /* Light Misty Gray */
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.success-container:hover {
+    transform: translateY(-5px);
+}
+
+h2 {
+    font-size: 1.8em;
+    color: #7A909A; /* Muted Cool Blue */
+    margin-bottom: 20px;
+}
+
+.payment-summary {
+    background: #fefce8; /* Soft background */
+    border: 1px solid #fbeed0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 1em;
+    color: #555;
+}
+
+.payment-summary p {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.payment-summary strong {
+    color: #37474F;
+}
+
+button {
+    background: #A7C7E7; /* Soft Sky Blue */
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background: #6D8EA0; /* Muted Slate Blue */
+}
+
+#loading {
+    display: none;
+    background-color: #E3E7EB; /* Light Misty Gray */
+    border: 1px solid #ddd;
+    padding: 20px;
+    font-size: 16px;
+    color: #555;
+    text-align: center;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+#success-message {
+    display: none;
+    background-color: #E3E7EB;
+    color: #37474F;
+    padding: 20px;
+    font-size: 18px;
+    border: 1px solid #7A909A;
+    margin-top: 20px;
+    border-radius: 5px;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    z-index: 9999;
+}
+
+@media (max-width: 600px) {
+    .success-container {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    button {
+        font-size: 1em;
+        padding: 10px 15px;
+        width: 100%;
+    }
+}

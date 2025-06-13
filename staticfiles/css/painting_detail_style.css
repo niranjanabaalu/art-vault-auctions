@@ -1,0 +1,185 @@
+/* General Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #F5F7F8; /* Soft Cool White */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 750px;
+    background: #E3E7EB; /* Light Misty Gray */
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+/* Painting Card */
+.painting-card h1 {
+    font-size: 26px;
+    color: #37474F; /* Deep Blue-Gray */
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.uploader {
+    font-size: 16px;
+    color: #7A909A; /* Muted Cool Blue */
+    font-style: italic;
+}
+
+/* Display Full Painting without Cropping */
+.painting-card img {
+    width: 100%;
+    max-height: 500px; 
+    object-fit: contain; /* Ensures full display */
+    border-radius: 12px;
+    margin: 15px 0;
+    background: white;
+    padding: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.painting-card img:hover {
+    transform: scale(1.02);
+}
+
+.description {
+    font-size: 18px;
+    color: #37474F;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Price Tag */
+.price {
+    font-size: 22px;
+    color: #E9AFA3; /* Soft Warm Coral */
+    font-weight: bold;
+    margin-bottom: 20px;
+    background: rgba(233, 175, 163, 0.15);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* No Bids Section */
+.no-bids {
+    background: rgba(233, 175, 163, 0.1);
+    color: #C62828;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+/* Bid History */
+.bid-history {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.bid-history h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #37474F;
+    font-weight: 600;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: #7A909A; /* Muted Cool Blue */
+    color: white;
+    font-weight: bold;
+}
+
+td {
+    color: #37474F;
+}
+
+/* Primary Button Styling */
+button, .btn {
+    background: #A7C7E7; /* Soft Sky Blue */
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+}
+
+button:hover, .btn:hover {
+    background: #6D8EA0; /* Muted Slate Blue */
+    transform: translateY(-3px);
+}
+
+/* Social Media Buttons */
+.social-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-buttons a {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.instagram {
+    background: #E1306C;
+}
+
+.pinterest {
+    background: #BD081C;
+}
+
+.social-buttons a:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+}
+
+/* Footer */
+.footer {
+    background: #6D8EA0; /* Muted Slate Blue */
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+    border-radius: 10px;
+}

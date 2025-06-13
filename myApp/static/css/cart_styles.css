@@ -1,0 +1,127 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F5F7F8;
+    color: #37474F;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header */
+header {
+    background: #7A909A;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Cart Container */
+.cart-container {
+    width: 90%;
+    max-width: 800px;
+    margin-top: 20px;
+    background: #E3E7EB;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Cart List */
+.cart-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Cart Item Card */
+.cart-container li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Item Image */
+.cart-container img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    background: white;
+    padding: 5px;
+}
+
+/* Item Details */
+.cart-container p {
+    flex: 1;
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+/* Buttons */
+.btn {
+    padding: 8px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s ease;
+    text-align: center;
+}
+
+/* Remove Button */
+.btn-danger {
+    background: #E9AFA3;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #D98A7C;
+    transform: scale(1.05);
+}
+
+/* Checkout Button */
+.btn-success {
+    background: #A7C7E7;
+    color: white;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-success:hover {
+    background: #6D8EA0;
+    transform: scale(1.05);
+}
+
+/* Empty Cart Message */
+.cart-container p {
+    text-align: center;
+    font-size: 18px;
+    color: #37474F;
+}
+
+/* Responsive Fix */
+@media screen and (max-width: 600px) {
+    .cart-container li {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cart-container img {
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+}

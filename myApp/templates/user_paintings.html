@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.username }}'s Paintings</title>
+    <link rel="stylesheet" href="{% static 'css/user_paintings_style.css' %}">
+    <script src="{% static 'js/follow.js' %}" defer></script>  <!-- Load JS -->
+</head>
+<body>
+    <input type="hidden" id="csrf-token" value="{{ csrf_token }}">
+
+    <h1>{{ user.username }}'s Paintings</h1>
+
+    <div class="profile-container">
+        <div class="profile">
+            {% csrf_token %}
+            {% if user.profile and user.profile.image %}
+                <img src="{{ user.profile.image.url }}" alt="Profile Picture" class="profile-pic" 
+                     onerror="this.onerror=null; this.src='{% static 'images/default.jpg' %}'">
+            {% else %}
+                <img src="{% static 'images/default.jpg' %}" alt="Default Profile Picture" class="profile-pic">
+            {% endif %}
+        </div>
+        
+        
+    
+        <!-- Followers & Following -->
+        <div class="follow-info">
+            <a href="{% url 'follow_list' user.username 'followers' %}" class="follow-link">
+                <span id="followers-count">{{ followers_count }}</span> Followers
+            </a>
+            <a href="{% url 'follow_list' user.username 'following' %}" class="follow-link">
+                {{ following_count }} Following
+            </a>
+        </div>
+    </div>
+
+    <!-- Follow Button -->
+    <!-- Follow Button -->
+{% if request.user != user %}
+<button id="follow-btn" class="follow-btn" data-username="{{ user.username }}" data-following="{{ is_following|yesno:'true,false' }}">
+    {% if is_following %}
+        Following
+    {% else %}
+        Follow
+    {% endif %}
+</button>
+{% endif %}
+
+
+    {% if uploaded_paintings %}
+        <ul>
+            {% for painting in uploaded_paintings %}
+                <li>
+                    <a href="javascript:void(0)" onclick="openModal('{{ painting.id }}')">
+                        <img src="{{ painting.picture.url }}" alt="{{ painting.title }}">
+                    </a>
+                    <h2>{{ painting.title }}</h2>
+                    <p>
+                        <strong>Status:</strong> 
+                        {% if painting.sold %}
+                            <span class="sold">Sold for ₹{{ painting.current_price }}</span>
+                        {% else %}
+                            <span class="available">Available</span>
+                        {% endif %}
+                    </p>
+                </li>
+
+                <!-- Modal for the image -->
+                <div id="modal-{{ painting.id }}" class="modal" data-painting-id="{{ painting.id }}">
+                    <div class="modal-content">
+                        <p class="esc-text">Click ESC button to go back</p>
+                        <img src="{{ painting.picture.url }}" alt="{{ painting.title }}">
+                    </div>
+                </div>
+
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>This user has not uploaded any paintings yet.</p>
+    {% endif %}
+
+    <a href="{% url 'home' %}">Back to Search</a>
+
+</body>
+</html>

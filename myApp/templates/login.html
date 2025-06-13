@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/loginstyle.css' %}?v=1">
+</head>
+<body style="background-image: url('{% static 'images/If Van Gogh had painted the New York skyline….jfif' %}'); background-size: cover; background-position: center; background-attachment: fixed;">
+
+    <div class="container">
+        <!-- Left Panel -->
+        <div class="left-panel">
+            <h2>Login</h2>
+            {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <p class="{% if message.tags %}{{ message.tags }}{% endif %}">
+                {{ message }}
+            </p>
+        {% endfor %}
+    </div>
+        {% endif %}
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                {% if next %}
+                    <input type="hidden" name="next" value="{{ next }}">
+                {% endif %}
+                {{ form.as_p }}
+                <button type="submit">Login</button>
+            </form>
+            
+            {% if error %}
+                <p style="color:red;">{{ error }}</p>
+            {% endif %}
+            <p>Don't have an account? <a href="{% url 'signup' %}">Register here</a></p>
+            </div>
+        <!-- Right Panel -->
+        <div class="right-panel">
+            <h1>Welcome to Art Vault Auctions</h1>
+    <blockquote style="margin-top: 20px; font-size: 16px; font-style: italic; color: rgba(255, 255, 255, 0.8);">
+        "Art enables us to find ourselves and lose ourselves at the same time."
+        <br>— Thomas Merton
+    </blockquote>
+            <form method="get" action="{% url 'continue_without_login' %}">
+                <button class="continue-without-login" onclick="window.location.href='/home/?guest=true'">
+                    Continue Without Login
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

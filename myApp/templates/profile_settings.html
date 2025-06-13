@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile & Settings</title>
+    <link rel="stylesheet" href="{% static 'css/profile_settings_styles.css' %}">
+</head>
+<body>
+
+
+
+<main class="profile-settings-container">
+
+    <!-- Profile Section -->
+    <section class="box profile-box">
+        <h2>Your Profile</h2>
+        <div class="profile-info">
+            <form method="POST" action="{% url 'update_profile_picture' %}" enctype="multipart/form-data" id="profile-pic-form">
+                {% csrf_token %}
+                <div class="profile-picture" id="profile-picture-container">
+                {% if user.is_superuser %}
+                    <img src="{% static 'images/logo.png' %}" alt="Admin Profile Picture" id="profile-preview">
+                {% elif user.profile.image %}
+                    <img src="{{ user.profile.image.url }}" alt="Profile Picture" id="profile-preview" onerror="this.onerror=null; this.src='{% static 'images/default.jpg' %}'">
+                {% else %}
+                    <img src="{% static 'images/default.jpg' %}" alt="Default Profile Picture" id="profile-preview">
+                {% endif %}
+                </div>
+                
+                <input type="file" id="profile-upload" name="profile_image" accept="image/*" style="display: none;">
+            </form>
+            
+            
+
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Full Name:</strong> {{ user.get_full_name }}</p>
+        </div>
+    </section>
+
+    <!-- Uploaded Paintings -->
+    <section class="box uploaded-paintings-box">
+        <h2>Your Uploaded Paintings</h2>
+        {% if uploaded_paintings %}
+            <div class="paintings-list">
+                {% for painting in uploaded_paintings %}
+                    <div class="painting-item">
+                        <img src="{{ painting.picture.url }}" alt="{{ painting.title }}">
+                        <h3>{{ painting.title }}</h3>
+                        <p>{{ painting.description }}</p>
+                        <p><strong>Status:</strong> {% if painting.sold %}Sold{% else %}Passed{% endif %}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>You have not uploaded any paintings yet.</p>
+        {% endif %}
+    </section>
+
+    <!-- Won Paintings -->
+    <section class="box won-paintings-box">
+        <h2>Paintings You've Won</h2>
+        {% if won_paintings %}
+            <div class="paintings-list">
+                {% for painting in won_paintings %}
+                    <div class="painting-item">
+                        <img src="{{ painting.picture.url }}" alt="{{ painting.title }}">
+                        <h3>{{ painting.title }}</h3>
+                        <p>{{ painting.description }}</p>
+                        <p><strong>Final Bid:</strong> ₹{{ painting.current_price }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>You have not won any paintings yet.</p>
+        {% endif %}
+    </section>
+
+    <!-- Bid History -->
+    <section class="box bid-history-box">
+        <h2>Your Bid History</h2>
+        {% if bid_history %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Painting</th>
+                        <th>Bid Amount</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for bid in bid_history %}
+                        <tr>
+                            <td>{{ bid.painting.title }}</td>
+                            <td>₹{{ bid.amount }}</td>
+                            <td>{{ bid.timestamp }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No bid history available.</p>
+        {% endif %}
+    </section>
+
+</main>
+
+<script src="{% static 'js/profile_scripts.js' %}"></script>
+<script>
+    document.getElementById("profile-upload").addEventListener("change", function() {
+    document.getElementById("profile-pic-form").submit();
+});
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const profileContainer = document.getElementById("profile-picture-container");
+    const profileUpload = document.getElementById("profile-upload");
+    const profilePreview = document.getElementById("profile-preview");
+    const profileInitial = document.getElementById("profile-initial");
+    const profileForm = document.getElementById("profile-pic-form");
+
+    profileContainer.addEventListener("click", function () {
+        profileUpload.click();
+    });
+
+    profileUpload.addEventListener("change", function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                if (profilePreview) {
+                    profilePreview.src = e.target.result;
+                    profilePreview.style.display = "block";
+                }
+                if (profileInitial) {
+                    profileInitial.style.display = "none";
+                }
+            };
+            reader.readAsDataURL(file);
+
+            // ✅ Use Fetch API to upload image without page reload
+            const formData = new FormData(profileForm);
+            fetch(profileForm.action, {
+                method: "POST",
+                body: formData,
+                headers: { "X-CSRFToken": "{{ csrf_token }}" }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Profile picture updated successfully!");
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    });
+});
+
+</script>
+
+</body>
+</html>

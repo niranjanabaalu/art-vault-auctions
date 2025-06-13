@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F5F7F8; /* Soft Cool White */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Container */
+.container {
+    background: #E3E7EB; /* Light Misty Gray */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 90%;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Thank You Message */
+h2 {
+    font-size: 26px;
+    color: #37474F; /* Deep Blue-Gray */
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 18px;
+    color: #37474F;
+    margin-top: 10px;
+}
+
+/* Button */
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 20px;
+}
+
+/* Primary Button */
+.btn-primary {
+    background-color: #A7C7E7; /* Soft Sky Blue */
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: #6D8EA0; /* Muted Slate Blue */
+    transform: scale(1.05);
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    h2 {
+        font-size: 22px;
+    }
+    p {
+        font-size: 16px;
+    }
+}
+
+    </style>
+
+</head>
+<body>
+
+{% block content %}
+<div class="container">
+    <h2>🎉 Thank You for Your Purchase! 🎉</h2>
+    <p>Your order has been successfully placed.</p>
+    <a href="{% url 'buy' %}" class="btn btn-primary">Continue Shopping</a>
+</div>
+{% endblock %}
+
+</body>
+</html>

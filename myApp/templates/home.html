@@ -1,0 +1,207 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Vault Auctions</title>
+    <link rel="stylesheet" href="{% static 'css/homestyles.css' %}?v=1">
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <main>
+        
+        
+    
+    <!-- Modal for displaying auction details -->
+<div id="auction-details-modal" class="auction-details-modal">
+    <div class="auction-details-content">
+        <h2>Upcoming Auction Details</h2>
+        <div id="auction-details"></div>
+        
+        <!-- Add Path to Upcoming Auctions -->
+        <div class="auction-details-footer">
+            <p>Don’t let the next auction slip away – swing by 'Upcoming Auctions' and let your future bid begin.</p>
+            </div>
+
+        <button onclick="closeAuctionDetails()">Close</button>
+    </div>
+</div>
+    
+<div class="carousel">
+    <div class="carousel-wrapper">
+        <h1>Art with a Laugh: Bid, Sell, and Smile!</h1>
+        <div class="carousel-items">
+            <div class="carousel-item active">
+                <img src="{% static 'images/Mona_Lisa_Painting1.jpg' %}" alt="Mona_Lisa_Painting">
+                <div class="carousel-caption">
+                    <h3>The Queen of Side-Eye.</h3>
+                    <p class="funny-desc">NOT FOR SALE! Because let’s be real—Louvre security would not approve. But don’t worry, you can still own a masterpiece… just not this one.</p>
+                    <p class="funny-desc">Have a painting that makes people stare in confusion? List it in the auction! Who knows, maybe in 500 years, someone will be analyzing your brushstrokes.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/Vincent_Van_Gogh_The_Starry_Night (1889)_ Painting.jpg' %}" alt="Vincent_Van_Gogh">
+                <div class="carousel-caption">
+                    <h3>Looks like Van Gogh swirled his paintbrush like a DJ on a turntable.</h3>
+                    <p class="funny-desc">SORRY, YOU CAN'T BUY THIS ONE. But if you’ve ever painted something after three cups of coffee and a deep existential crisis—your artwork belongs in this auction!</p>
+                    <p class="funny-desc">Sell your painting now! It might not have a Starry Night yet, but it could have a Bidding War!</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/The_Persistence_of_Memory_by_Salvador_Dali.jpg' %}" alt="The_Persistence_of_Memory_by_Salvador_Dali">
+                <div class="carousel-caption">
+                    <h3>This is exactly how time feels when you're waiting for your food delivery.”</h3>
+                    <p class="funny-desc">NOT FOR SALE, BUT… You know what is? Your creativity! If Dalí can sell melting clocks, your painting of a cat wearing sunglasses has a real shot.</p>
+                    <p class="funny-desc">List your artwork now! Who needs realism when weirdness sells?</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/The_Scream_Painting.jpg' %}" alt="The_Scream_Painting">
+                <div class="carousel-caption">
+                    <h3>POV: You just saw the auction prices.</h3>
+                    <p class="funny-desc">KEEP YOUR WALLET CLOSED, THIS ONE’S TAKEN. But if you’ve ever drawn a face that perfectly captures stress, confusion, or midlife crisis—congrats, it belongs here!</p>
+                    <p class="funny-desc">Put your painting up for auction! Art doesn’t have to be perfect—it just has to make people feel something… even if that “something” is mild panic.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/Girl_with_pearl_painting.jpg' %}" alt="Girl_with_pearl_painting">
+                <div class="carousel-caption">
+                    <h3>The Renaissance’s answer to ‘WYD?</h3>
+                    <p class="funny-desc"> NOT FOR SALE! But you know what is? The chance to make history with your own masterpiece! If a simple pearl earring can make a painting legendary, imagine what your creativity can do.</p>
+                    <p class="funny-desc"> List your painting today! Who knows, in 300 years, people might be arguing whether your artwork is actually a secret self-portrait.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="carousel-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+</div>
+{% if upcoming_auctions %}
+        <div class="auction-list">
+            {% for painting in upcoming_auctions %}
+                <div class="auction-item">
+                    <!-- Clickable Timer to open auction details modal -->
+                    <div class="auction-timer">
+                        <h3>Live Auction Starts In: 
+                            <span class="timer" 
+                                  data-start="{{ painting.start_time|date:'U' }}" 
+                                  onclick="showAuctionDetailsModal('{{ painting.id }}')">
+                            </span>
+                        </h3>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+    {% else %}
+        <p>No upcoming auctions at the moment.</p>
+    {% endif %}
+
+
+        <!-- Bidding Process Section -->
+        <section id="bidding-process" class="bidding-process">
+            <h2>Bidding Process</h2>
+            <div class="steps">
+                <div class="step">
+                    <h3>Step 1: Go to Live Auction</h3>
+                    <p>Browse our live auction listings and find the perfect piece that catches your eye.</p>
+                </div>
+                <div class="step">
+                    <h3>Step 2: Place Your Bid</h3>
+                    <p>Once you've found the painting you want, place your bid. The system will update in real-time, letting you know if you've been outbid.</p>
+                </div>
+                <div class="step">
+                    <h3>Step 3: Win the Painting</h3>
+                    <p>If your bid is the highest at the end of the auction, you will win the painting and be notified. You can then complete your purchase securely.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Selling Process Section -->
+        <section id="selling-process" class="selling-process">
+            <h2>How to Sell a Painting</h2>
+            <div class="steps">
+                <div class="step">
+                    <h3>Step 1: Register</h3>
+                    <p>Create an account and register your painting for auction.</p>
+                </div>
+                <div class="step">
+                    <h3>Step 2: Set a Starting Price</h3>
+                    <p>Choose the starting bid for your painting based on its value.</p>
+                </div>
+                <div class="step">
+                    <h3>Step 3: Auction Day</h3>
+                    <p>Once the auction starts, potential buyers will start bidding.</p>
+                </div>
+                <div class="step">
+                    <h3>Step 4: Sold</h3>
+                    <p>If your painting sells, we will notify you of the highest bid and the winner.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About the Website Section -->
+        <section id="about" class="about">
+            <h2>About Us</h2>
+            <p>Welcome to our Art Auction Portal, where art enthusiasts and collectors gather to bid on beautiful, rare, and exquisite pieces of art. Our platform connects art lovers from all around the world, providing a seamless auction experience.</p>
+            <p>We aim to offer a user-friendly interface that lets you participate in live auctions effortlessly. Whether you're a first-time bidder or a seasoned collector, our platform ensures a transparent and fair bidding process.</p>
+            <p>Our mission is to help emerging artists showcase their work to a global audience and offer collectors the chance to acquire unique and valuable artworks.</p>
+        </section>
+    </main>
+
+    {% include 'footer.html' %}
+
+    <script src="{% static 'js/homescripts.js' %}"></script>
+    
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const timers = document.querySelectorAll('.timer');
+        timers.forEach(timer => {
+            const startTimestamp = parseInt(timer.dataset.start, 10) * 1000; // Convert to milliseconds
+            const interval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = startTimestamp - now;
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    timer.textContent = "Auction Started!";
+                } else {
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    timer.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                }
+            }, 1000);
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+            let currentIndex = 0;
+            const items = document.querySelectorAll(".carousel-item");
+            const dots = document.querySelectorAll(".dot");
+            
+            function showNextPainting() {
+                items[currentIndex].classList.remove("active");
+                dots[currentIndex].classList.remove("active");
+                currentIndex = (currentIndex + 1) % items.length;
+                items[currentIndex].classList.add("active");
+                dots[currentIndex].classList.add("active");
+            }
+            
+            setInterval(showNextPainting, 5000);
+        });
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+/* General Styles */
+.paintings-container {
+    margin-top: 40px;
+    margin-left: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.painting-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes content to the bottom */
+    align-items: center;
+    width: 250px; /* Adjust as needed */
+    height: 400px; /* Ensure uniform height */
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #E3E7EB;
+    text-align: center;
+    cursor: pointer;
+}
+
+.painting-image {
+    width: 100%;
+    height: auto;
+    max-height: 250px; /* Ensures image doesn't take full space */
+    object-fit: cover;
+    cursor: pointer;
+}
+
+
+.painting-card h2, 
+.painting-card p, 
+.painting-card .buttons {
+    margin: 5px 0;
+}
+
+.buttons {
+    margin-top: auto; /* Pushes buttons to the bottom */
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 8px 12px;
+    background-color: #e288ac;
+    color: white;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn.buy-now {
+    background-color:cadetblue;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+/* Ensure body and html take full viewport height */
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+/* Make main content take remaining space */
+main {
+    flex: 1;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    width: 100%;
+}
+
+
+/* Modal Styles */
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+/* Modal Content */
+.modal-content {
+    background: #E3E7EB;
+    padding: 20px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 900px;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-wrap: wrap;  /* Ensures content does not overlap */
+    gap: 20px;
+}
+
+/* Close Button */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #37474F;
+    font-weight: bold;
+}
+
+/* Modal Body - Side by Side Layout */
+.modal-body {
+    display: flex;
+    flex-wrap: wrap;  /* Wrap content to prevent overlap */
+    align-items: center;
+    width: 100%;
+}
+
+/* Left Side - Image */
+.modal-image {
+    flex: 1;
+    min-width: 40%;  /* Ensures the image takes proper space */
+    max-width: 50%;
+}
+
+.modal-image img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: white;
+    padding: 5px;
+}
+
+/* Right Side - Details */
+.modal-details {
+    flex: 1;
+    min-width: 45%;  /* Ensures text section does not shrink too much */
+    max-width: 50%;
+    text-align: left;
+}
+
+.modal-details h2 {
+    margin-left: 20px;
+    font-size: 24px;
+    color: #37474F;
+    margin-bottom: 10px;
+}
+
+.modal-details p {
+    margin-left: 20px;
+    font-size: 16px;
+    color: #37474F;
+    margin-bottom: 10px;
+}
+
+/* Buttons */
+.modal-details .buttons {
+    margin-left: 20px;
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.modal-details .btn {
+    background: #A7C7E7;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.modal-details .btn:hover {
+    background: #6D8EA0;
+    transform: translateY(-2px);
+}
+
+/* Responsive Fix for Small Screens */
+@media screen and (max-width: 768px) {
+    .modal-body {
+        flex-direction: column;  /* Stack items vertically */
+        align-items: center;
+    }
+
+    .modal-image, .modal-details {
+        max-width: 100%;
+        min-width: 100%;
+        text-align: center;
+    }
+
+    .modal-details .buttons {
+        justify-content: center;
+    }
+}

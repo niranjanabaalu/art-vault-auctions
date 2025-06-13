@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auction Results</title>
+    <link rel="stylesheet" href="{% static 'css/resultstyle.css' %}">
+</head>
+<body style="background-color: #F5F7F8;">
+    {% include 'header.html' %}
+
+    <main>
+    <section id="sold-paintings">
+        <h2>Sold Paintings</h2>
+        <div class="gallery">
+            {% for painting in sold_paintings %}
+            <div class="art-item" style="background-color: #E3E7EB;">
+                <a href="{% url 'painting_detail' painting.id %}">
+                    <img src="{{ painting.picture.url }}" alt="{{ painting.title }}">
+                </a>
+                <h3>{{ painting.title }}</h3>
+                <p><strong>Final Price:</strong> ₹{{ painting.current_price }}</p>
+                <p><strong>Winner:</strong> {{ painting.winner.username }}</p> <!-- Correctly access the winner's username -->
+            </div>
+            {% empty %}
+            <p>No paintings were sold yet.</p>
+            {% endfor %}
+        </div>
+    </section>
+    <section id="passed-paintings">
+        <h2>Passed Paintings</h2>
+        <div class="gallery">
+            {% for painting in passed_paintings %}
+            <div class="art-item" style="background-color: #E3E7EB;">
+                <a href="{% url 'painting_detail' painting.id %}">
+                    <img src="{{ painting.picture.url }}" alt="{{ painting.title }}">
+                </a>
+                <h3>{{ painting.title }}</h3>
+                <p><strong>Status:</strong> Passed</p>
+            </div>
+            {% empty %}
+            <p>No paintings passed yet.</p>
+            {% endfor %}
+        </div>
+    </section>
+    
+</main>
+{% include 'footer.html' %}
+</body>
+</html>

@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.username }} - {{ follow_type }}</title>
+    <link rel="stylesheet" href="{% static 'css/follow_list.css' %}">
+</head>
+<body>
+
+    <h1>{{ follow_type }}</h1>
+
+    <!-- Followers & Following Count with data-count attribute -->
+    <div class="follow-info">
+        <a href="{% url 'follow_list' user.username 'followers' %}" class="follow-link">
+            <span id="followers-count" data-count="{{ followers_count }}">{{ followers_count }}</span> Followers
+        </a>
+        <a href="{% url 'follow_list' user.username 'following' %}" class="follow-link">
+            <span id="following-count" data-count="{{ following_count }}">{{ following_count }}</span> Following
+        </a>
+    </div>
+
+    <ul class="follow-list">
+        {% for follow_user in follow_users %}
+            <li class="follow-item">
+                <div class="follow-user">
+                    <div class="profile-picture">
+                        {% if follow_user.profile.image and follow_user.profile.image.name != "default.jpg" %}
+                            <img src="{{ follow_user.profile.image.url }}" 
+                                 alt="Profile Picture" 
+                                 class="profile-pic">
+                        {% else %}
+                            <img src="{% get_media_prefix %}default.jpg" 
+                                 alt="Default Profile Picture" 
+                                 class="profile-pic">
+                        {% endif %}
+                    </div>
+                    
+                    
+                    <a href="{% url 'user_paintings' follow_user.username %}" class="username">{{ follow_user.username }}</a>
+                </div>
+    
+                <!-- Follow Button -->
+{% if request.user != follow_user %}
+<button class="follow-btn" data-username="{{ follow_user.username }}">
+    {% if follow_user.id in following_ids %}
+        Following
+    {% else %}
+        Follow
+    {% endif %}
+</button>
+{% endif %}
+
+            
+
+
+            </li>
+        {% endfor %}
+    </ul>
+    
+    
+    
+
+    <a href="{% url 'user_paintings' user.username %}" class="back-link">Back to Profile</a>
+
+    <script src="{% static 'js/follow_list.js' defer %}"></script>
+
+</body>
+</html>

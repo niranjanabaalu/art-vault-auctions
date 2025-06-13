@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.imglogo{
+    font-family: 'Amatic SC', cursive;
+    position: relative;
+    left: 10px;
+    top: 100px;
+}
+
+#logonj {
+    background: linear-gradient(to right, #ff7f50, #ffd700);
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #333;
+    color: white;
+    padding: 10px 20px;
+}
+
+#tabh1 {
+    font-family: 'Playfair Display', serif;
+}
+
+
+header nav ul {
+    list-style: none;
+    display: flex;
+}
+
+header nav ul li {
+    margin: 0 10px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+    background: #f4f4f4;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.hero button {
+    padding: 10px 20px;
+    background: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.hero button:hover {
+    background: #555;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.art-item {
+    text-align: center;
+}
+
+.art-item img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}

@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Paintings</title>
+    <link rel="stylesheet" href="{% static 'css/buy_styles.css' %}">
+</head>
+<body>
+    {% include 'header.html' %}
+<header>
+    <h1>Buy Paintings</h1>
+</header>
+
+<main class="paintings-container">
+    {% for painting in paintings %}
+    <div class="painting-card" onclick="showDetails('{{ painting.id }}', '{{ painting.title }}', '{{ painting.price }}', '{{ painting.description }}', '{{ painting.picture.url }}')">
+        <img src="{{ painting.picture.url }}" alt="{{ painting.title }}" class="painting-image">
+        <h2>{{ painting.title }}</h2>
+        <p><strong>Price:</strong> ₹{{ painting.price }}</p>
+
+    </div>
+    {% empty %}
+    <p>No paintings available for purchase.</p>
+    {% endfor %}
+</main>
+
+<!-- Modal for Painting Details -->
+<div id="painting-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <div class="modal-body">
+            <!-- Painting Image -->
+            <div class="modal-image">
+                <img id="painting-image" src="" alt="Painting">
+            </div>
+
+            <!-- Painting Details -->
+            <div class="modal-details">
+                <h2 id="painting-title"></h2>
+                <p id="painting-description"></p>
+                <p><strong>Price:</strong> ₹<span id="painting-price"></span></p>
+
+                <div class="buttons">
+                    <a id="modal-add-to-cart" href="#" class="btn">Add to Cart</a>
+                    <a id="modal-buy-now" href="#" class="btn buy-now">Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showDetails(id, title, price, description, imageUrl) {
+        document.getElementById("painting-title").innerText = title;
+        document.getElementById("painting-price").innerText = price;
+        document.getElementById("painting-description").innerText = description;
+        document.getElementById("painting-image").src = imageUrl;
+
+        document.getElementById("modal-add-to-cart").href = `/add-to-cart/${id}/`;
+        document.getElementById("modal-buy-now").href = `/buy-now/${id}/`;
+
+        document.getElementById("painting-modal").style.display = "flex";
+    }
+
+    function closeModal() {
+        document.getElementById("painting-modal").style.display = "none";
+    }
+</script>
+{% include 'footer.html' %}
+</body>
+</html>

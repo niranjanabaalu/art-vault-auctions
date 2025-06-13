@@ -1,0 +1,211 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.payment-container, .success-container {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+h2 {
+    color: #4CAF50;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.payment-details, .payment-summary {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.payment-details p, .payment-summary p {
+    margin: 10px 0;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+strong {
+    color: #222;
+}
+
+.pay-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pay-button:hover {
+    background-color: #45a049;
+}
+
+.success-container {
+    background-color: #e7f7e9;
+    border: 1px solid #b7ddb0;
+}
+
+.success-container p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.payment-summary {
+    background-color: #fefce8;
+    border-color: #fbeed0;
+}
+
+@media (max-width: 600px) {
+    .payment-container, .success-container {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .pay-button {
+        font-size: 1em;
+        padding: 8px 15px;
+    }
+}
+
+/*button*/
+/* Payment Button */
+.pay-button {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 15px 32px; /* Padding for the button */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Display as inline-block */
+    font-size: 16px; /* Font size */
+    margin: 10px 0; /* Space around the button */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+/* Hover effect for the button */
+.pay-button:hover {
+    background-color: #45a049; /* Darker green when hovered */
+}
+
+/* Loading Message */
+#loading {
+    display: none;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    padding: 20px;
+    font-size: 16px;
+    color: #555;
+    text-align: center;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+/* Success Message Box */
+#success-message {
+    display: none;
+    background-color: #d4edda; /* Green background */
+    color: #155724; /* Dark green text */
+    padding: 20px;
+    font-size: 18px;
+    border: 1px solid #c3e6cb;
+    margin-top: 20px;
+    border-radius: 5px;
+    text-align: center;
+    
+    /* Centering the success message box */
+    position: fixed; /* Fixed positioning */
+    top: 50%; /* Center from top */
+    left: 50%; /* Center from left */
+    transform: translate(-50%, -50%); /* Adjust to truly center it */
+    width: 80%; /* Limit width of message box */
+    max-width: 600px; /* Max width */
+    z-index: 9999; /* Ensure it appears above other content */
+}
+
+/* Success container style */
+.success-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* General Box Styling */
+.payment-summary {
+    background-color: #f8f9fa; /* Light background */
+    border: 1px solid #ddd; /* Border around the summary */
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    text-align: left;
+}
+
+.payment-summary p {
+    margin-bottom: 10px; /* Space between the summary paragraphs */
+}
+
+.payment-summary strong {
+    font-weight: bold; /* Make strong text bold */
+}
+
+/* Button Style for Success Page */
+button {
+    padding: 15px 30px;
+    background-color: #007bff; /* Blue color */
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+/* Success Button Hover Effect */
+button:hover {
+    background-color: #0056b3; /* Darker blue when hovered */
+}
+
+/* Responsive design for mobile */
+@media (max-width: 600px) {
+    .payment-container, .success-container {
+        padding: 10px;
+    }
+
+    .pay-button, button {
+        width: 100%; /* Make buttons full-width on small screens */
+    }
+}
+
+/*-button-*/

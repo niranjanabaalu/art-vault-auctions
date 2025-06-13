@@ -1,0 +1,182 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    background-color: #eee;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Messages (Auto-Hide) */
+.messages {
+    text-align: center;
+    padding: 10px;
+    margin: 10px auto;
+    width: 50%;
+    border-radius: 5px;
+}
+
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.alert.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Auction Container */
+.auction-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Auction Item Card */
+.auction-item {
+    background: #E3E7EB;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+    padding: 15px;
+}
+
+.auction-item:hover {
+    transform: translateY(-5px);
+}
+
+.painting-info img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.painting-info h3 {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.painting-info p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Bid Section */
+.bid-section {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.bid-section input {
+    width: 80%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.bid-section button {
+    margin-top: 8px;
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.bid-section button:hover {
+    background: #218838;
+}
+
+/* Bid History */
+.bid-history {
+    margin-top: 15px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.bid-history h4 {
+    font-size: 16px;
+    color: #333;
+}
+
+.bid-history table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.bid-history th, .bid-history td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.bid-history th {
+    background: #f8f9fa;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .auction-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .auction-item {
+        width: 90%;
+    }
+
+    .messages {
+        width: 80%;
+    }
+}
+/* Ensure full-page layout */
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main content should expand to push footer down */
+.main-content {
+    flex: 1;
+}
+
+/* Footer styling */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    margin-top: auto; /* Pushes footer to the bottom */
+}

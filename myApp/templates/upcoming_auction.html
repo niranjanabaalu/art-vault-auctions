@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Auctions</title>
+    <link rel="stylesheet" href="{% static 'css/upcomingstyle.css' %}">
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <main>
+        {% if upcoming_auctions %}
+            <div class="auction-list">
+                {% for painting in upcoming_auctions %}
+                    <div class="auction-item">
+                        <a href="{% url 'painting_detail' painting.id %}">
+                        <img src="{{ painting.picture.url }}" alt="{{ painting.title }}">
+                    </a>
+                        <h3>{{ painting.title }}</h3>
+                        <p>{{ painting.description }}</p>
+                        <p><strong>Starts At (IST):</strong> {{ painting.start_time }}</p>
+
+                        <!-- Timer -->
+                        <div>
+                            <h3>Time Remaining: <span class="timer" data-start="{{ painting.start_time|date:'U' }}"></span></h3>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No upcoming auctions at the moment.</p>
+        {% endif %}
+    </main>
+
+    {% include 'footer.html' %}
+
+    <script>
+        document.querySelectorAll('.timer').forEach(function(timerElement) {
+            var startTime = parseInt(timerElement.dataset.start) * 1000;
+
+            function updateTimer() {
+                var currentTime = new Date().getTime();
+                var timeRemaining = startTime - currentTime;
+
+                if (timeRemaining > 0) {
+                    var hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+                    var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+                    timerElement.textContent = hours + "h " + minutes + "m " + seconds + "s";
+                } else {
+                    timerElement.textContent = "Auction Started!";
+                }
+            }
+
+            setInterval(updateTimer, 1000);
+            updateTimer();
+        });
+    </script>
+</body>
+</html>

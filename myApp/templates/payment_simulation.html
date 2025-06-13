@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Simulation</title>
+    <link rel="stylesheet" href="{% static 'css/paymentstyle.css' %}">
+</head>
+<body>
+    <div class="payment-container">
+        <h2>Payment for "{{ painting.title }}"</h2>
+
+        <!-- Address Field -->
+        <div class="address-section">
+            <label for="address"><strong>Delivery Address:</strong></label>
+            <textarea id="address" name="address" placeholder="Enter your address..." required></textarea>
+            <span id="address-error" style="color: red; display: none;">Address is required.</span>
+        </div>
+
+        <div class="payment-details">
+            <p><strong>Price:</strong> ₹{{ painting.current_price|floatformat:2 }}</p>
+            <p><strong>Tax Amount (18%):</strong> ₹{{ tax_amount|floatformat:2 }}</p>
+            <p><strong>Handling Fee (5%):</strong> ₹{{ handling_fee|floatformat:2 }}</p>
+            <p><strong>Final Price:</strong> {{ formatted_final_price }}</p>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="pay-button">Proceed to Payment</button>
+        </form>
+    </div>
+    <script>
+        document.querySelector("form").addEventListener("submit", function(event) {
+            let addressField = document.getElementById("address");
+            let addressError = document.getElementById("address-error");
+    
+            if (addressField.value.trim() === "") {
+                event.preventDefault(); // Prevent form submission
+                addressError.style.display = "block"; // Show error message
+                addressField.style.border = "1px solid red"; // Highlight field
+            } else {
+                addressError.style.display = "none";
+                addressField.style.border = ""; // Reset border
+            }
+        });
+    </script>
+</body>
+</html>

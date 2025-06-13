@@ -1,0 +1,91 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main Content */
+main {
+    width: 90%;
+    max-width: 1300px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* 🎨 Auction Grid (Maintains previous layout but improves uniformity) */
+.auction-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 90px;
+    margin-left: 40px;
+}
+
+/* 📦 Auction Item (Ensuring Same Frame Size for Every Painting) */
+.auction-item {
+    background: #E3E7EB;
+    width: 300px; /* Fixed width for uniformity */
+    height: 420px; /* Fixed height to keep the layout balanced */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Hover Effect */
+.auction-item:hover {
+    transform: scale(1.03);
+}
+
+/* 🖼️ Auction Image (Ensuring All Images are the Same Size) */
+.auction-item img {
+    width: 100%;
+    height: 250px; /* Fixed height */
+    object-fit: cover; /* Crop images to fit properly */
+    border-radius: 8px;
+}
+
+/* 🏷️ Auction Title */
+.auction-item h3 {
+    font-size: 18px;
+    color: #444;
+    margin-top: 10px;
+}
+
+/* 📝 Auction Description */
+.auction-item p {
+    font-size: 14px;
+    color: #777;
+    margin: 5px 0;
+}
+
+/* ⏳ Timer Styling */
+.timer {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e91e63;
+}
+
+/* Responsive Design (for smaller screens) */
+@media (max-width: 768px) {
+    .auction-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .auction-item {
+        width: 90%;
+        height: auto;
+    }
+
+    .auction-item img {
+        height: 220px;
+    }
+}

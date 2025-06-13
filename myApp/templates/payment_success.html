@@ -1,0 +1,73 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success</title>
+    <link rel="stylesheet" href="{% static 'css/paymentstyles.css' %}">
+
+    <script>
+        // Function to show the success message and disable the page after payment completion
+        function showSuccessMessage() {
+            document.getElementById('loading').style.display = 'none';  // Hide loading message
+            document.getElementById('success-message').style.display = 'block';  // Show success message
+
+            // Disable entire page interactions
+            document.body.style.pointerEvents = "none"; 
+            document.body.style.opacity = "0.6";  // Fade effect
+        }
+
+        // Function to show loading message and start payment process
+        function startPaymentProcess() {
+            let paymentButton = document.getElementById('pay-button');
+
+            // Disable the button to prevent multiple clicks
+            paymentButton.disabled = true;
+            paymentButton.style.opacity = "0.6";  
+            paymentButton.style.cursor = "not-allowed";
+
+            // Show loading message
+            document.getElementById('loading').style.display = 'block';
+
+            // Simulate a payment process (10 seconds)
+            setTimeout(showSuccessMessage, 10000);
+        }
+    </script>
+
+</head>
+<body>
+    <div class="success-container">
+        <p>Please review the details below before proceeding. By confirming, you agree to our 
+            <a href="{% url 'terms_and_conditions' %}">terms and conditions</a> and refund policies.</p>
+        <p>Your payment will be processed securely, and you will receive a confirmation email once the transaction is successful.</p>
+
+        <!-- Payment Summary -->
+        <h2>Payment Summary</h2>
+        <div class="payment-summary">
+            <p><strong>Tax Amount (18%):</strong> ₹{{ tax_amount|floatformat:2 }}</p>
+            <p><strong>Handling Fee (5%):</strong> ₹{{ handling_fee|floatformat:2 }}</p>
+            <p><strong>Seller's Payment:</strong> ₹{{ seller_payment|floatformat:2 }}</p>
+            <p><strong>Admin Commission:</strong> ₹{{ admin_fee|floatformat:2 }}</p>
+            <h3><p><strong>Total Amount:</strong> {{ formatted_final_price }}</p></h3>
+        </div>
+
+        <!-- Final Payment Button -->
+        <button id="pay-button" onclick="startPaymentProcess();">
+            Final Payment: {{ formatted_final_price }}
+        </button>
+
+        <!-- Loading Spinner -->
+        <div id="loading" style="display: none;">
+            <p>Processing Payment... Please wait for 10 seconds.</p>
+        </div>
+
+        <!-- Success Message -->
+        <div id="success-message" style="display: none;">
+            <h3>Payment Successful!</h3>
+            <p>Your payment has been successfully processed. Thank you for your purchase!</p>
+        </div>
+    </div>
+</body>
+</html>

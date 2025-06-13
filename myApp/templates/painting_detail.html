@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ painting.title }} - Painting Details</title>
+    <link rel="stylesheet" href="{% static 'css/painting_detail_style.css' %}">
+</head>
+<body>
+    {% include 'header.html' %}
+    <main>
+    <div class="container">
+        <!-- Left Side: Painting -->
+        <div class="painting-section">
+            <img src="{{ painting.picture.url }}" alt="{{ painting.title }}" class="painting-image" onclick="openModal()">
+            <h1>{{ painting.title }}</h1>
+            <p class="uploader">Uploaded by: <strong>@{{ painting.user.username }}</strong></p>
+            <p class="description">{{ painting.description }}</p>
+            <p class="details"><strong>Details:</strong> {{ painting.details }}</p>
+            <p class="price"><strong>Final Price:</strong> ₹{{ painting.current_price }}</p>
+        </div>
+
+        <!-- Right Side: Bid History & Auction Details -->
+        <div class="auction-section">
+            {% if painting.end_time > now %}
+                {% if not bids %}
+                    <div class="no-bids">
+                        <h2>No bids yet</h2>
+                        <p>Be the first to place a bid!</p>
+                    </div>
+                {% endif %}
+            {% else %}
+                {% if not bids %}
+                    <div class="no-bids">
+                        <p>No bids were placed for this artwork.</p>
+                    </div>
+                {% endif %}
+            {% endif %}
+
+            {% if bids %}
+            <div class="bid-history">
+                <h2>Bid History</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Bid Amount</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for bid in bids %}
+                        <tr>
+                            <td>{{ bid.user.username }}</td>
+                            <td>₹{{ bid.amount }}</td>
+                            <td>{{ bid.timestamp }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</main>
+{% include 'footer.html' %}
+
+<!-- Lightbox Modal for Image Zoom -->
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+        <img id="modalImage" src="{{ painting.picture.url }}" alt="Zoomed Painting">
+        <div class="zoom-controls">
+            <button onclick="zoomIn()">+</button>
+            <button onclick="zoomOut()">-</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImage");
+    let scale = 1;
+
+    window.openModal = function() {
+        modal.style.display = "flex";
+        scale = 1;
+        modalImg.style.transform = `scale(${scale})`;
+    };
+
+    window.closeModal = function() {
+        modal.style.display = "none";
+    };
+
+    window.zoomIn = function() {
+        scale += 0.2;
+        modalImg.style.transform = `scale(${scale})`;
+    };
+
+    window.zoomOut = function() {
+        if (scale > 1) {
+            scale -= 0.2;
+            modalImg.style.transform = `scale(${scale})`;
+        }
+    };
+
+    // Close modal when clicking outside the image or pressing Escape
+    modal.addEventListener("click", function(event) {
+        if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "Escape") closeModal();
+    });
+});
+
+</script>
+</body>
+</html>

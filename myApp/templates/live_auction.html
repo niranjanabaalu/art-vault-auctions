@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Auctions</title>
+    <link rel="stylesheet" href="{% static 'css/livestyle.css' %}">
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <main>
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+        {% if live_auctions %}
+    <div class="auction-list">
+        {% for painting in live_auctions %}
+            <div class="auction-item">
+                <div class="painting-info">
+                    <a href="{% url 'painting_detail' painting.id %}">
+                    <img src="{{ painting.picture.url }}" alt="{{ painting.title }}">
+                </a>
+                    <h3>{{ painting.title }}</h3>
+                    <p>{{ painting.description }}</p>
+                    <p><strong>Ends At (IST):</strong> {{ painting.end_time }}</p>
+                    <p><strong>Uploaded By:</strong> {{ painting.user.username }}</p>
+
+                    <div class="bid-section">
+                        {% if user.is_authenticated and painting.user == user %}
+                            <p class="alert">You cannot place a bid on your own painting.</p>
+                        {% else %}
+                            <form method="post" action="{% url 'place_bid' painting.id %}">
+                                {% csrf_token %}
+                                <input type="number" name="bid_amount" 
+                                       min="{{ painting.current_price|add:'1' }}" 
+                                       placeholder="Your bid" required>
+                                <button type="submit">Place Bid</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="bid-history">
+                    <h4>Bid History</h4>
+                    {% if painting.sorted_bids.exists %}
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Bid Amount</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for bid in painting.sorted_bids %}
+                                    <tr>
+                                        <td>{{ bid.user.username }}</td>
+                                        <td>{{ bid.amount }}</td>
+                                        <td>{{ bid.timestamp }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p>No bids yet. Be the first to bid!</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No live auctions at the moment. Please check back later.</p>
+{% endif %}
+    </main>
+    {% include 'footer.html' %}
+    <script>
+        // Auto-hide messages after 5 seconds
+        setTimeout(() => {
+            const messages = document.querySelector('.messages');
+            if (messages) {
+                messages.style.display = 'none';
+            }
+        }, 5000);
+    </script>
+    
+</body>
+</html>

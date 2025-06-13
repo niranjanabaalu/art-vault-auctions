@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F5F7F8; /* Soft Cool White */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        /* Header */
+        header {
+            width: 100%;
+            background-color: #6D8EA0; /* Muted Slate Blue */
+            color: white;
+            padding: 20px;
+            font-size: 26px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Payment Container */
+        .payment-container {
+            background: #E3E7EB; /* Light Misty Gray */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* Order Title */
+        h2 {
+            font-size: 24px;
+            color: #37474F; /* Deep Blue-Gray */
+        }
+
+        /* Payment Details */
+        p {
+            font-size: 20px;
+            color: #37474F;
+            margin: 10px 0;
+        }
+
+        /* Address Input */
+        .address-container {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .address-container label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #37474F;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .address-container textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            resize: none;
+            background: #ffffff;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            transition: border 0.3s ease-in-out;
+        }
+
+        .address-container textarea:focus {
+            border: 1px solid #6D8EA0;
+            outline: none;
+        }
+
+        /* Pay Now Button */
+        .btn {
+            display: inline-block;
+            padding: 14px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        /* Primary Button */
+        .pay-now {
+            background-color: #A7C7E7; /* Soft Sky Blue */
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .pay-now:hover {
+            background-color: #6D8EA0; /* Muted Slate Blue */
+            transform: scale(1.05);
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .payment-container {
+                padding: 20px;
+            }
+            h2 {
+                font-size: 22px;
+            }
+            p {
+                font-size: 18px;
+            }
+            .btn {
+                font-size: 16px;
+                padding: 12px 20px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+<header>
+    <h1>Complete Your Payment</h1>
+</header>
+
+<main class="payment-container">
+    <h2>Order for {{ order.painting.title }}</h2>
+    <p><strong>Amount:</strong> ₹{{ order.amount_paid }}</p>
+    
+    <form action="{% url 'complete_payment' order.id %}" method="POST">
+        {% csrf_token %}
+        
+        <!-- Address Field -->
+        <div class="address-container">
+            <label for="address">Shipping Address:</label>
+            <textarea id="address" name="address" rows="3" placeholder="Enter your full address..." required></textarea>
+        </div>
+        
+        <button type="submit" class="btn pay-now">Pay Now</button>
+    </form>
+</main>
+
+</body>
+</html>

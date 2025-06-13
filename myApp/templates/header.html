@@ -1,0 +1,204 @@
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Vault Auctions</title>
+    <link rel="stylesheet" href="{% static 'css/homestyles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <ul>
+                <li class="logo-container">
+                    <a href="{% url 'home' %}" class="sidebar-btn logo-btn">
+                        <img src="{% static 'images/logo.png' %}" alt="Art Auction Logo" class="sidebar-logo">
+                        <span class="tooltip">Art Vault Auctions</span>
+                    </a>
+                </li>
+        
+                <li>
+                    <a href="{% url 'home' %}" class="sidebar-btn">
+                        <i class="fas fa-home"></i>
+                        <span class="tooltip">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'buy' %}" class="sidebar-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="tooltip">Buy</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'live_auction' %}" class="sidebar-btn">
+                        <i class="fas fa-broadcast-tower"></i>
+                        <span class="tooltip">Live Auctions</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'upcoming_auction' %}" class="sidebar-btn">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span class="tooltip">Upcoming Auctions</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'auction_results' %}" class="sidebar-btn">
+                        <i class="fas fa-chart-line"></i>
+                        <span class="tooltip">Auction Results</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#footer" class="sidebar-btn">
+                        <i class="fas fa-envelope"></i>
+                        <span class="tooltip">Contact</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Top Bar with Search -->
+        <div class="top-bar">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input 
+                    type="text" 
+                    id="search-box" 
+                    name="q" 
+                    placeholder="Search for Users" 
+                    oninput="searchUsers(this.value)" 
+                    autocomplete="off"
+                />
+                <span id="clear-btn" onclick="clearSearch()">❌</span>
+                <ul id="search-results"></ul>
+            </div>
+            
+            
+            
+        
+            <!-- Upload Button -->
+            <button class="upload-btn" onclick="window.location.href='{% url 'upload_painting' %}'">
+                <i class="fas fa-upload"></i> Upload
+            </button>
+        
+            <!-- Profile Section -->
+            {% if user.is_authenticated %}
+                <div class="profile-container">
+                    <button class="profile-btn">
+                        <div class="profile-picture" id="profile-picture-container">
+                            {% if user.is_superuser %}
+                                <img src="{% static 'images/logo.png' %}" alt="Admin Profile Picture" id="profile-preview">
+                            {% elif user.profile.image %}
+                                <img src="{{ user.profile.image.url }}" alt="Profile Picture" id="profile-preview" onerror="this.onerror=null; this.src='{% static 'images/default.jpg' %}'">
+                            {% else %}
+                                <img src="{% static 'images/default.jpg' %}" alt="Default Profile Picture" id="profile-preview">
+                            {% endif %}
+                        </div>
+                        
+                    </button>
+                    
+                    
+                    
+                    
+                        <div class="profile-dropdown">
+                            <a href="{% url 'user_profile_settings' %}">Profile & Settings</a>
+                            <a href="{% url 'logout' %}">Logout</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Hidden file input for profile upload -->
+                    <input type="file" id="profile-upload" name="profile_image" accept="image/*" style="display: none;">
+                    
+                    <div class="profile-dropdown">
+                        <a href="{% url 'user_profile_settings' %}">Profile & Settings</a>
+                        <a href="{% url 'logout' %}">Logout</a>
+                    </div>
+                </div>
+            {% else %}
+                <button class="login-btn" onclick="window.location.href='{% url 'login' %}'">
+                    <i class="fas fa-user"></i> Login
+                </button>
+            {% endif %}
+        </div>
+        
+
+    </header>
+
+
+<script>
+    // Toggle search box visibility when the search icon is clicked
+    function toggleSearchBox() {
+    const searchBox = document.getElementById('search-box');
+    const searchIcon = document.getElementById('search-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    if (searchBox.style.display === 'none' || searchBox.style.display === '') {
+        searchBox.style.display = 'block';
+        searchIcon.style.display = 'none';
+        closeIcon.style.display = 'inline'; // Show close icon
+    } else {
+        searchBox.style.display = 'none';
+        searchIcon.style.display = 'inline'; // Show search icon again
+        closeIcon.style.display = 'none'; // Hide close icon
+    }
+}
+
+function searchUsers(query) {
+    const resultsBox = document.getElementById('search-results');
+    const clearBtn = document.getElementById('clear-btn');
+
+    if (query.trim()) {
+        clearBtn.style.display = 'inline';
+    } else {
+        clearBtn.style.display = 'none';
+        resultsBox.style.display = 'none';
+        resultsBox.innerHTML = '';
+        return;
+    }
+
+    fetch(`/search-users/?q=${encodeURIComponent(query)}`)
+        .then(response => response.json())
+        .then(data => {
+            const results = data.results;
+            resultsBox.innerHTML = '';
+
+            if (results.length > 0) {
+                results.forEach(user => {
+                    const listItem = document.createElement('li');
+                    listItem.style.padding = '5px 10px';
+                    listItem.style.cursor = 'pointer';
+                    listItem.onclick = () => {
+                        window.location.href = `/user/${user.username}/`;
+                    };
+
+                    let profilePic = user.profile_pic
+                        ? `<img src="${user.profile_pic}" class="search-profile-pic">`
+                        : `<span class="profile-initial">${user.username.charAt(0).toUpperCase()}</span>`;
+
+                    listItem.innerHTML = `${profilePic} ${user.username}`;
+                    resultsBox.appendChild(listItem);
+                });
+                resultsBox.style.display = 'block';
+            } else {
+                resultsBox.innerHTML = '<li style="padding: 5px 10px; color: gray;">No users found.</li>';
+                resultsBox.style.display = 'block';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching users:', error);
+        });
+}
+
+// CLEAR SEARCH FUNCTION
+function clearSearch() {
+    document.getElementById('search-box').value = '';
+    document.getElementById('search-results').style.display = 'none';
+    document.getElementById('search-results').innerHTML = '';
+    document.getElementById('clear-btn').style.display = 'none';
+}
+
+
+</script>
+
