@@ -85,3 +85,18 @@ GitHub: [github.com/niranjanabaalu](https://github.com/niranjanabaalu)
 ---
 
 *This project demonstrates my dedication to building secure, scalable, and user-focused web applications using modern technologies.*
+
+---
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).  
+© 2025 Niranjana Balasubramanian. All rights reserved.
+
+---
+
+## Notice
+
+⚠️ **This project is part of my academic work. Unauthorized commercial use, plagiarism, or claiming ownership is strictly prohibited.**  
+If you use or refer to this work, please provide proper credit.
+
