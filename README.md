@@ -1,5 +1,8 @@
 # Art Vault Auctions
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+
 A secure online art auction platform developed as part of my BCA final year mini project using Django.
 
 ![Project Banner](https://github.com/niranjanabaalu/art-vault-auctions/raw/refs/heads/main/art_vault_auctions.webp)
