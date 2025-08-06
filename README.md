@@ -1,7 +1,10 @@
 # Art Vault Auctions
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: All Rights Reserved](https://img.shields.io/badge/License-AllRightsReserved-red.svg)](LICENSE)
 
+> 🚫 **This project is intended for demonstration purposes only. Reuse, modification, or redistribution of this code is not permitted without written permission from the author.**
+
+---
 
 A secure online art auction platform developed as part of my BCA final year mini project using Django.
 
@@ -88,18 +91,4 @@ GitHub: [github.com/niranjanabaalu](https://github.com/niranjanabaalu)
 ---
 
 *This project demonstrates my dedication to building secure, scalable, and user-focused web applications using modern technologies.*
-
----
-
-## License
-
-This project is licensed under the [MIT License](./LICENSE).  
-© 2025 Niranjana Balasubramanian. All rights reserved.
-
----
-
-## Notice
-
-⚠️ **This project is part of my academic work. Unauthorized commercial use, plagiarism, or claiming ownership is strictly prohibited.**  
-If you use or refer to this work, please provide proper credit.
 
